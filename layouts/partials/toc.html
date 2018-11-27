@@ -1,0 +1,6 @@
+{{ with .TableOfContents }}
+<aside class="toc">
+	<h4>{{ $.Site.Params.tocText | default "Table of Contents"}}</h4>
+	{{ . }}
+</aside>
+{{ end }}

@@ -1,0 +1,11 @@
+{{ $currentPage := . }}
+{{ if .Site.Menus.main }}
+<nav id="menu">
+	<ul class="d-flex list-unstyled">
+		{{ range .Site.Menus.main }}
+		<li><a class="link-unstyled {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}active{{end}}" href="{{ .URL }}" title="{{ .Title | default .Name }}">{{ .Name }}</a></li>
+		{{ end }}
+	</ul>
+</nav>
+<a id="menu-toggler" href="#"></a>
+{{ end }}

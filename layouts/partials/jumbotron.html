@@ -1,0 +1,8 @@
+<section class="jumbotron">
+	{{ with .Site.Params.jumbotronPrimaryText }}
+	<p class="jumbotron-primary">{{ . | markdownify }}</p>
+	{{ end }}
+	{{ with .Site.Params.jumbotronSecondaryText }}
+	<p class="jumbotron-secondary">{{ . | markdownify }}</p>
+	{{ end }}
+</section>

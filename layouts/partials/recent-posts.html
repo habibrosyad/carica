@@ -1,0 +1,22 @@
+{{ $n := .Site.Params.recentPosts | default 3 }}
+{{ $post := where .Site.RegularPages "Section" "post" }}
+{{ if $post }}
+<hr>
+<section class="homepage-section recent-posts">
+	<h3 class="homepage-section-title">{{ .Site.Params.recentPostsTitle | default "My recent posts" }}</h3>
+	<div class="homepage-section-content">
+		<ul class="list-unstyled">
+			{{ range first $n $post }}
+			<li>
+				<a class="link-unstyled" href="{{ .Permalink }}">{{ .Title }}</a>
+				<span class="page-meta">{{ .Date.Format "02 Jan 2006" }} · {{ .ReadingTime }} min read</span>
+			</li>
+			{{ end }}
+		</ul>
+		{{ if gt (len $post) $n }}
+		<!-- Check more posts -->
+		<a class="btn" href="{{ .Site.Params.recentPostMoreLink | default "/post/" }}">{{ .Site.Params.recentPostsMoreText | default "Check more posts..." }}</a>
+		{{ end }}
+	</div>
+</section>
+{{ end }}

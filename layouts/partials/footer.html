@@ -1,0 +1,42 @@
+<footer class="footer">
+  <hr>
+  <p>
+    <!-- Copyright -->
+    <span>{{ with .Site.Copyright }}{{ . }}{{ else }}&copy; {{now.Format "2006"}}{{ end }}</span><br>
+    <!-- Footer text -->
+    {{ with .Site.Params.footerText }}
+    <span>{{ . | markdownify }}</span><br>
+    {{ end }}
+    <!-- Social media links -->
+    {{ range $key, $val := .Site.Social }}
+      {{ if $val }}
+        <a rel="nofollow noopener noreferrer" class="social" href="{{ $val }}" target="_blank">
+          <span class="fab fa-{{ $key }}"></span>
+        </a>
+      {{ end }}
+    {{ end }}
+  </p>
+</footer>
+
+<!-- JavaScript -->
+{{ if .Site.Params.includeModernizr }}
+<script src="/js/vendor/modernizr-3.6.0.min.js"></script>
+{{ end }}
+{{ if .Site.Params.includeJQuery }}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+{{ end }}
+<script src="/js/plugins.js"></script>
+<script src="/js/theme.js"></script>
+{{ range .Site.Params.customJS }}
+<script src="{{ . }}"></script>
+{{ end }}
+
+{{ with .Site.GoogleAnalytics }}
+<!-- Google Analytics -->
+<script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', '{{ . }}', 'auto'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+{{ end }}

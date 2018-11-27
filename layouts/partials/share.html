@@ -1,0 +1,18 @@
+{{ if .IsPage }}
+<hr>
+<section class="post-section">
+	<p>Share on:</p>
+	<!-- Facebook -->
+	<a rel="nofollow noopener noreferrer" href="http://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}&title={{ .Title }}" target="_blank">
+		<span class="fab fa-facebook"></span>&nbsp;Facebook
+	</a>
+	<!-- Twitter -->
+	<a ref="nofollow noopener noreferrer" href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}" target="_blank">
+		<span class="fab fa-twitter"></span>&nbsp;Twitter
+	</a>
+	<!-- LinkedIn -->
+	<a ref="nofollow noopener noreferrer" href="http://www.linkedin.com/shareArticle?mini=true&url={{ .Permalink }}&title={{ .Title }}&source={{ $.Site.Title }}" target="_blank">
+		<span class="fab fa-linkedin"></span>&nbsp;LinkedIn
+	</a>
+</section>
+{{ end }}

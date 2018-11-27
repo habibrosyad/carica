@@ -1,0 +1,15 @@
+{{ define "main" }}
+	<article class="page">
+		<span class="page-meta">{{ .Date.Format "02 Jan 2006" }} · {{ .ReadingTime }} min read</span>
+		<h1 class="page-title">{{ .Title }}</h1>
+		<div class="d-flex">
+			<div class="page-content">
+				{{ .Content }}
+				{{- partial "tags.html" . -}}
+				{{- partial "share.html" . -}}
+				{{- partial "disqus.html" . -}}
+			</div>
+			{{- partial "toc.html" . -}}
+		</div>
+	</article>
+{{ end }}

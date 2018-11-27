@@ -1,0 +1,6 @@
+{{ define "main" }}
+	<section class="not-found">
+		<span class="not-found-icon">{{ with .Site.Params.error404Icon }}{{ . | markdownify }}{{ else }}404!{{ end }}</span>
+		<p class="not-found-text">{{ with .Site.Params.error404Text }}{{ . | markdownify }}{{ else }}Nothing here!{{ end }}</p>
+	</section>
+{{ end }}

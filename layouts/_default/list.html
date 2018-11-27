@@ -1,0 +1,19 @@
+{{ define "main" }}
+	<article class="page">
+		<h1 class="page-title">{{ .Title }}</h1>
+		<div class="page-content">
+			{{ .Content }}
+		</div>
+		{{ if gt (len .Pages) 0 }}
+		<ul class="page-list list-unstyled">
+		{{ range .Paginator.Pages }}
+	        <li class="d-flex">
+	            <a class="d-flex link-unstyled" href="{{.Permalink}}">{{.Title}}</a>
+	            <span class="page-meta">{{.Date.Format "02 Jan 2006"}}</span>
+	        </li>
+	    {{ end }}
+	    </ul>
+	    {{- partial "pagination.html" . -}}
+	    {{ end }}
+	</article>
+{{ end }}

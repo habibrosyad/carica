@@ -1,0 +1,15 @@
+{{ define "main" }}
+	<article class="page">
+		<h1 class="page-title">{{ .Title }}</h1>
+		<div class="tags d-flex">
+			{{ $type := .Type }}
+			{{ range $key, $value := .Data.Terms.ByCount }}
+		        {{ $name := .Name }}
+		        {{ $count := .Count }}
+		        {{ with $.Site.GetPage (printf "/%s/%s" $type $name) }}
+		            <a rel="tag" href="{{ .Permalink }}">{{ $name }}<span class="tag-count">{{ $count }}</span></a>
+		        {{ end }}
+		    {{ end }}
+		</div>
+	</article>
+{{ end }}

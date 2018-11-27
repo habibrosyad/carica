@@ -1,0 +1,57 @@
+<head>
+	<!-- Set character encoding for the document -->
+	<meta charset="utf-8">
+	<!-- Instruct Internet Explorer to use its latest rendering engine -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<!-- Viewport for responsive web design -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<!-- Document Title: At most 55 characters for Google Search Result Pages -->
+    <title>{{ if .Title }}{{ .Title }} &ndash; {{ end }}{{ .Site.Title }}</title>
+    <!-- Meta Description: At most 150 characters for Google Search Result Pages -->
+    <meta name="description" content="{{ .Description | default .Summary | default .Site.Params.description | plainify }}" />
+    <!-- Helps prevent duplicate content issues with www. and non-www, for example -->
+    <link rel="canonical" href="{{ .Site.BaseURL }}" />
+    {{ if .IsPage }}
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:image" content="{{ $.Param "image" }}">
+    <meta property="og:description" content="{{ .Description | default .Summary | plainify }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta property="og:locale" content="{{ .Site.LanguageCode }}">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    {{ with .Site.Params.twitterSiteAccount }}
+    <meta name="twitter:site" content="@{{ . }}">
+    {{ end }}
+    {{ with .Site.Params.twitterIndividualAccount }}
+    <meta name="twitter:creator" content="@{{ . }}">
+    {{ end }}
+    <meta name="twitter:url" content="{{ .Permalink }}">
+    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:description" content="{{ .Description | default .Summary | plainify }}">
+    <meta name="twitter:image" content="{{ $.Param "image" }}">
+    {{ end }}
+    <!-- Theme stylesheets -->
+    <link rel="preload" href="/css/normalize.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" as="style" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" onload="this.rel='stylesheet'">
+    <link rel="preload" href="/css/theme.css" as="style" onload="this.rel='stylesheet'">
+    {{ range .Site.Params.customCSS }}
+    <link rel="preload" href="{{ . }}" as="style" onload="this.rel='stylesheet'">
+    {{ end }}
+    <noscript>
+        <link rel="stylesheet" href="/css/normalize.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/theme.css">
+        {{ range .Site.Params.customCSS }}
+        <link rel="stylesheet" href="{{ . }}">
+        {{ end }}
+    </noscript>
+    <script>
+     /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+     !function(a){"use strict";var b=function(b,c,d){function j(a){if(e.body)return a();setTimeout(function(){j(a)})}function l(){f.addEventListener&&f.removeEventListener("load",l),f.media=d||"all"}var g,e=a.document,f=e.createElement("link");if(c)g=c;else{var h=(e.body||e.getElementsByTagName("head")[0]).childNodes;g=h[h.length-1]}var i=e.styleSheets;f.rel="stylesheet",f.href=b,f.media="only x",j(function(){g.parentNode.insertBefore(f,c?g:g.nextSibling)});var k=function(a){for(var b=f.href,c=i.length;c--;)if(i[c].href===b)return a();setTimeout(function(){k(a)})};return f.addEventListener&&f.addEventListener("load",l),f.onloadcssdefined=k,k(l),f};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+     /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+     !function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(a){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+    </script>
+</head>

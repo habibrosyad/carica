@@ -1,0 +1,13 @@
+{{ with .Params.tags }}
+	{{ if gt (len .) 0 }}
+		<hr>
+		<section class="post-section">
+			<p>{{ $.Site.Params.taggedWithText | default "Tagged with:" }}</p>
+			<div class="d-flex">
+			{{ range . }}
+				<a rel="tag" href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}">{{ . }}</a>
+			{{ end }}
+			</div>
+		</section>
+	{{ end }}
+{{ end }}
